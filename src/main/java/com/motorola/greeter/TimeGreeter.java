@@ -13,12 +13,13 @@ public class TimeGreeter implements Greeter {
         this.localTime = function;
     }
 
-
-    String welcomeGuest(LocalTime time) {
+    private String welcomeGuest(LocalTime time) {
         if (time == null) {
             throw new IllegalArgumentException("Gdzie mi z tym nullem chamie!");
         }
-        if (time.getHour() <= 12) {
+        if (time.getHour() < 12  ) {
+            return "Good morning!";
+        } else if (time.getHour() == 12 && time.getMinute() == 0) {
             return "Good morning!";
         } else if (time.getHour() < 18) {
             return "Good afternoon!";
@@ -33,8 +34,7 @@ public class TimeGreeter implements Greeter {
         return welcomeGuest(now);
     }
 
-    LocalTime getCurrentTime() {
-        LocalTime now = localTime.get();
-        return now;
+    private LocalTime getCurrentTime() {
+        return localTime.get();
     }
 }

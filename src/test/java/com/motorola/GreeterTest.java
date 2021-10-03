@@ -5,71 +5,99 @@ import com.motorola.greeter.TimeGreeter;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
-import java.util.function.Supplier;
 
-import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class GreeterTest {
-
-
+class TimeGreeterTest {
 
     @Test
     public void saysGoodMorningAtMidnight() {
-        LocalTime time = LocalTime.of(12, 0);
-        Greeter greeter = new TimeGreeter(()->time);
+        //given
+        LocalTime time = LocalTime.of(0, 0);
+        Greeter greeter = new TimeGreeter(() -> time);
+
+        //when
         String result = greeter.welcomeGuest();
+
+        //then
         assertEquals("Good morning!", result);
     }
 
     @Test
     public void saysGoodEveningBeforeMidnight() {
+        //given
         LocalTime time = LocalTime.of(23, 59);
-        Greeter greeter = new TimeGreeter(()->time);
+        Greeter greeter = new TimeGreeter(() -> time);
+
+        //when
         String result = greeter.welcomeGuest();
+
+        //then
         assertEquals("Good evening!", result);
     }
 
     @Test
     public void saysGoodMorningBeforeNoon() {
+        //given
+        LocalTime time = LocalTime.of(11, 59);
+        Greeter greeter = new TimeGreeter(() -> time);
 
-        LocalTime time = LocalTime.of(9, 59);
-        Greeter greeter = new TimeGreeter(()->time);
+        //when
         String result = greeter.welcomeGuest();
+
+        //then
         assertEquals("Good morning!", result);
     }
 
     @Test
     public void saysGoodMorningAtNoon() {
+        //given
         LocalTime time = LocalTime.of(12, 00);
-        Greeter greeter = new TimeGreeter(()->time);
+        Greeter greeter = new TimeGreeter(() -> time);
 
+        //when
         String result = greeter.welcomeGuest();
+
+        //then
         assertEquals("Good morning!", result);
     }
 
     @Test
     public void saysGoodAfternoonAfterNoon() {
 
-        LocalTime time = LocalTime.of(15, 59);
-        Greeter greeter = new TimeGreeter(()->time);
+        //given
+        LocalTime time = LocalTime.of(12, 01);
+        Greeter greeter = new TimeGreeter(() -> time);
+
+        //when
         String result = greeter.welcomeGuest();
+
+        //then
         assertEquals("Good afternoon!", result);
     }
 
     @Test
     public void saysGoodEveningAfter18() {
 
-        LocalTime time = LocalTime.of(23, 59);
-        Greeter greeter = new TimeGreeter(()->time);
+        //given
+        LocalTime time = LocalTime.of(18, 01);
+        Greeter greeter = new TimeGreeter(() -> time);
+
+        //when
         String result = greeter.welcomeGuest();
+
+        //then
         assertEquals("Good evening!", result);
     }
 
     @Test
     public void throwsIllegalArgumentException() {
-        LocalTime time = null;
-        Greeter greeter = new TimeGreeter(()->time);
+        //Given
+        Greeter greeter = new TimeGreeter(() -> null);
+
+
+        //when / then
         assertThrows(IllegalArgumentException.class, () -> greeter.welcomeGuest());
     }
 }
