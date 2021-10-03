@@ -1,7 +1,6 @@
 package com.motorola;
 
 import java.time.LocalTime;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class TimeGreeter implements Greeter {
@@ -12,8 +11,7 @@ public class TimeGreeter implements Greeter {
         this.localTime = function;
     }
 
-
-    String welcomeGuest(LocalTime time) {
+    private String welcomeGuest(LocalTime time) {
         if (time == null) {
             throw new IllegalArgumentException("Gdzie mi z tym nullem chamie!");
         }
@@ -34,8 +32,7 @@ public class TimeGreeter implements Greeter {
         return welcomeGuest(now);
     }
 
-    LocalTime getCurrentTime() {
-        LocalTime now = localTime.get();
-        return now;
+    private LocalTime getCurrentTime() {
+        return localTime.get();
     }
 }

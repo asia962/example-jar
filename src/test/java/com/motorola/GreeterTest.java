@@ -6,8 +6,9 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class GreeterTest {
+class TimeGreeterTest {
 
     @Test
     public void saysGoodMorningAtMidnight() {
