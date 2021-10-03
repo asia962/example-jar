@@ -1,7 +1,8 @@
-package com.motorola;
+package com.motorola.greeter;
+
+import com.motorola.greeter.Greeter;
 
 import java.time.LocalTime;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class TimeGreeter implements Greeter {

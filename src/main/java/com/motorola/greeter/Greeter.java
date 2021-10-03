@@ -1,4 +1,4 @@
-package com.motorola;
+package com.motorola.greeter;
 
 public interface Greeter {
     String welcomeGuest();
