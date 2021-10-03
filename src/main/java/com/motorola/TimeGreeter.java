@@ -17,7 +17,9 @@ public class TimeGreeter implements Greeter {
         if (time == null) {
             throw new IllegalArgumentException("Gdzie mi z tym nullem chamie!");
         }
-        if (time.getHour() <= 12) {
+        if (time.getHour() < 12  ) {
+            return "Good morning!";
+        } else if (time.getHour() == 12 && time.getMinute() == 0) {
             return "Good morning!";
         } else if (time.getHour() < 18) {
             return "Good afternoon!";
